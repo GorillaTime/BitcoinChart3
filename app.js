@@ -2,16 +2,16 @@
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-var config = require('./config');
+//var config = require('./config');
 
 var Twitter = require('node-tweet-stream'),
   t = new Twitter({
-    consumer_key: config.twitter.API_key,
-    consumer_secret: config.twitter.API_secret_key,
-    token: config.twitter.token,
-    token_secret: config.twitter.token_secret
+    consumer_key: '2mrK7KN2dW8BKnytlVsulOyBP',
+    consumer_secret: 'qBeygZgzQUqbppe99ILUHf2QkXEJtc2nwU0kFdu0oXith9valP',
+    token: '1224295757332639744-fd2coDG6MRDn691idFBHNltzko3Edj',
+    token_secret: '7r7wtkcgUFWDDVrcRy3HjIqCE5E9rQtx9iPPUQMEHln9N'
   });
-
+ 
 var searchText = 'ビットコイン';
 t.track(searchText);
 
