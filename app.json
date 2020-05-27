@@ -1,0 +1,8 @@
+{
+  "name": "BitCoinCHART",
+  "description": "BitCoinCHART",
+  "repository": "https://github.com/GorillaTime/BitcoinChart3",
+  "logo": "",
+  "keywords": ["node"],
+  "image": "heroku/nodejs"
+}
