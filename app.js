@@ -19,17 +19,6 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
-/** 
-io.on('connection', function (socket) {
-  t.on('tweet', function (tweet) { //イベント検知 = 受信
-    if (!tweet.retweed) {
-      io.emit('tweet', tweet); //イベント発火＝送信
-      console.log(tweet.text);
-    }
-  });
-});
-*/
-
 io.on('connection', function (socket) {
   t.on('tweet', function (tweet) { //イベント検知 = 受信
     if (!tweet.retweed) {

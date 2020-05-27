@@ -63,15 +63,6 @@
       });
       //////////////////////////////////////////↓取得ツイート
       socketio.on('tweet', function (msg) {
-        /**
-        if(a <= 10){
-          $('#messagesTweet').prepend($('<li>').text(msg.text));
-          a+=1;
-        }else{
-          $('#messagesTweet').find('<li>')[10].detach();
-            a-=1;
-        }
-        */
         $('#messagesTweet').prepend($('<li>').text(msg.text));
       });
     });
