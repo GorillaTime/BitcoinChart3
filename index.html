@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>ビットコイン実況板　ナカJ</title>
+  <title>仮想通貨ch　ビットコイン実況板:ナカJ</title>
   <script src="/socket.io/socket.io.js"></script>
   <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
   <!-- ライブラリを読み込む -->
@@ -26,13 +26,53 @@
         </div>
       </div>
     </div>
-    <ul id="messages"></ul>
+    <div class="row">
+    <div class="col-md-6">
+      <ul id="messages">
+        <li>
+          (´；ω；`)もうだめぽ...
+        </li>
+        <li>
+          自己破産ヨシ!
+        </li>
+        <li>
+          癖になってンだ、レバかけて空売りすンの。
+        </li>
+      </ul>
+      <form id="message_form" action="#">
+        <input id="input_msg" autocapitalize="off"/><button>Send</button>
+      </form>
+    </div>
+    <div class="col-md-6">
+      <p>↓Twitterの反応</p>
+      <ul id="messagesTweet"></ul>
+    </div>
+    </div>
   </div>
   <script>
     var socketio = io();
+    var a = 1;
     $(function () {
+      $('#message_form').submit(function(){
+        socketio.emit('message', $('#input_msg').val());
+        $('#input_msg').val('');
+        return false;
+      });
+      socketio.on('message',function(msg){
+        $('#messages').prepend($('<li>').text(msg));
+      });
+      //////////////////////////////////////////↓取得ツイート
       socketio.on('tweet', function (msg) {
-        $('#messages').append($('<li>').text(msg.text));
+        /**
+        if(a <= 10){
+          $('#messagesTweet').prepend($('<li>').text(msg.text));
+          a+=1;
+        }else{
+          $('#messagesTweet').find('<li>')[10].detach();
+            a-=1;
+        }
+        */
+        $('#messagesTweet').prepend($('<li>').text(msg.text));
       });
     });
 

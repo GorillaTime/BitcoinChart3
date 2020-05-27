@@ -12,13 +12,14 @@ var Twitter = require('node-tweet-stream'),
     token_secret: config.twitter.token_secret
   });
 
-var searchText = 'bitcoin';
+var searchText = 'ビットコイン';
 t.track(searchText);
 
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
+/** 
 io.on('connection', function (socket) {
   t.on('tweet', function (tweet) { //イベント検知 = 受信
     if (!tweet.retweed) {
@@ -27,7 +28,21 @@ io.on('connection', function (socket) {
     }
   });
 });
+*/
 
+io.on('connection', function (socket) {
+  t.on('tweet', function (tweet) { //イベント検知 = 受信
+    if (!tweet.retweed) {
+      io.emit('tweet', tweet); //イベント発火＝送信
+      console.log(tweet.text);
+    }
+  });
+  //////////////////////////////////
+  socket.on('message',function(msg){
+    console.log('message:'+msg);
+    io.emit('message',msg);
+  });
+});
 
 const port = process.env.PORT || 8000;
 http.listen(port, () => {
